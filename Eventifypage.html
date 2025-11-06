@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PartyHub</title>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #fff;
+    }
+
+    /* Header */
+    .header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+
+    .header img {
+      height: 50px;
+      width: auto;
+    }
+
+    .header ul {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0;
+      padding: 0 80px;
+      list-style: none;
+    }
+
+    .logo-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .title a {
+      font: 20px Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      color: black;
+      text-decoration: none;
+    }
+
+    .menu {
+      display: flex;
+      gap: 10px;
+    }
+
+    .menu a {
+      color: black;
+      text-decoration: none;
+      padding: 16px;
+      display: block;
+      transition: background 0.3s;
+    }
+
+    .menu a:hover {
+      background-color: rgb(55, 32, 32);
+      color: white;
+    }
+
+    /* Sections */
+    section {
+      padding: 100px 80px;
+      margin: 0 auto;
+    }
+
+    section h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    section p {
+      text-align: center;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .alt-bg {
+      background-color: #E7A8A4;
+    }
+
+    .alt-bg h3 {
+      text-align: center;
+    }
+
+    /* Animation */
+    .animation {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: moveup 0.5s linear forwards;
+    }
+
+    @keyframes moveup {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100vh;
+      padding: 0 80px;
+      background: linear-gradient(135deg, #ffffff, #ffe4e1);
+      overflow: hidden;
+    }
+
+    .hero-content {
+      flex: 1;
+      max-width: 50%;
+      text-align: left; 
+      animation: fadeUp 1s ease-out;
+    }
+
+    .hero-content h1 {
+      text-align: left; 
+      font-size: 60px;
+      margin-bottom: 10px;
+    }
+
+    .hero-content h3 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #444;
+    }
+
+    .hero-content p {
+      margin-bottom: 15px;
+      line-height: 1.6;
+      color: #333;
+      text-align: justify; 
+    }
+
+    .hero-content button {
+      background-color: #ff6781;
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .hero-content button:hover {
+      background-color: #ff4a67;
+    }
+
+    .hero-logo {
+      flex: 1;
+      display: flex;
+      justify-content: end;
+    }
+
+    .hero-logo img {
+      max-width: 400px;
+      width: 100%;
+      height: auto;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .description {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    /* Card Grid */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
+      justify-content: center;
+      margin: 40px auto 0;
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .image-container {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .image-container img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .image-container::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: linear-gradient(to top, #ffe4e1, transparent);
+      pointer-events: none;
+    }
+
+    .image-container h4 {
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      width: 100%;
+      color: rgb(0, 0, 0);
+      font-weight: bold;
+      text-align: center;
+      z-index: 2;
+      text-shadow: 0 2px 5px #ffe4e1;
+    }
+
+    .card h4 p {
+      font-weight: normal;
+      margin: 4px 0 0 0;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .foot{
+      text-align: center;
+      padding: 20px;
+      background-color: #E7A8A4;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 1024px) {
+      .card-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Promo Section */
+    .promo-section {
+      padding: 100px 80px;
+      text-align: center;
+      background: linear-gradient(135deg, #ffe4e1, #fff0f5);
+    }
+
+    .promo-section h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .promo-section p {
+      max-width: 800px;
+      margin: 0 auto 40px;
+      line-height: 1.6;
+      color: #444;
+      font-size: 18px;
+    }
+
+    .video-container {
+      position: relative;
+      width: 80%;
+      max-width: 800px;
+      margin: 0 auto 40px;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      background-color: #000; /* keeps space filled even before loading */
+      aspect-ratio: 16 / 9; /* maintains perfect video shape */
+    }
+
+    /* Make the video fill the fixed box */
+    .video-container video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* or 'contain' if you want full video visible */
+      border-radius: 15px;
+    }
+
+
+    /* Call-to-Action Buttons */
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .download-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background-color: black;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 12px;
+      text-align: left;
+      cursor: pointer;
+      transition: transform 0.2s ease, background-color 0.3s ease;
+    }
+
+    .download-btn:hover {
+      transform: translateY(-4px);
+      background-color: #333;
+    }
+
+    .download-btn img {
+      height: 30px;
+      width: 30px;
+    }
+
+    .download-btn .text small {
+      display: block;
+      font-size: 10px;
+      color: #bbb;
+    }
+
+    .download-btn .text strong {
+      font-size: 14px;
+      color: white;
+    }
+
+        .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        width: 25px;
+    }
+
+    .hamburger span {
+        background: white;
+        height: 3px;
+        margin: 5px 0;
+        border-radius: 2px;
+        transition: 0.3s;
+    }
+
+    /* Mobile Menu */
+    @media (max-width: 768px) {
+        nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 200px;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.9);
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            transition: right 0.3s ease;
+        }
+
+        nav.active {
+            right: 0;
+        }
+
+        .hamburger {
+            display: flex;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+    }
+
+    /* --- Tablets (481px–768px) --- */
+  @media (min-width: 481px) and (max-width: 768px) {
+    .header ul {
+      padding: 0 40px;
+    }
+
+    .hero {
+      flex-direction: column-reverse;
+      text-align: center;
+      padding: 120px 40px 60px;
+    }
+
+    .hero-content {
+      max-width: 90%;
+    }
+
+    .hero-content h1 {
+      font-size: 50px;
+    }
+
+    .hero-logo {
+      justify-content: center;
+    }
+
+    .hero-logo img {
+      max-width: 300px;
+    }
+
+    .card-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .video-container {
+      width: 90%;
+    }
+  }
+
+/* --- Laptops (769px–1200px) --- */
+@media (min-width: 769px) and (max-width: 1200px) {
+  .header ul {
+    padding: 0 60px;
+  }
+
+  .hero-content h1 {
+    font-size: 55px;
+  }
+
+  .hero-content h3 {
+    font-size: 22px;
+  }
+
+  .hero-logo img {
+    max-width: 350px;
+  }
+
+  .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* --- Large Screens (1201px–1600px) --- */
+@media (min-width: 1201px) and (max-width: 1600px) {
+  .hero-content h1 {
+    font-size: 65px;
+  }
+  .hero-content h3 {
+    font-size: 26px;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <ul>
+      <div class="logo-title">
+        <li><img src="images/logo.png" alt="Logo"></li>
+        <li class="title"><a href="#">PartyHub</a></li>
+      </div>
+
+      <div class="menu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </div>
+    </ul>
+  </header>
+
+  <section id="home" class="hero animation">
+    <div class="hero-content">
+      <h1>PARTYHUB</h1>
+      <h3>Powered by Eventify</h3>
+      <p>Planning events can be stressful and time-consuming, especially when searching for reliable suppliers for venues, catering, photography, and décor. PartyHub makes event planning simple by bringing everything you need into one easy-to-use platform. Compare, book, and customize services that match your preferences — all in one place. Whether it’s a wedding, birthday, or corporate gathering, PartyHub connects you with trusted providers so you can plan your event effortlessly and in style.</p>
+      <button onclick="location.href='#about'">Start Your Journey</button>
+    </div>
+
+    <div class="hero-logo">
+      <img src="images/logo.png" alt="PartyHub Logo">
+    </div>
+  </section>
+
+  <section id="services" class="alt-bg">
+    <h1>Services the Marketplace offers</h1>
+    <div class="description">
+      <p>PartyHub offers a seamless way to plan every aspect of your event — from venues and catering to photography and decorations. 
+      Whether you're preparing for an intimate celebration or a grand occasion, our platform connects you with trusted service providers 
+      to bring your vision to life. Explore a wide range of event essentials and tailor your experience to match your unique style and needs.</p>
+    </div>
+    <br>
+    <h3>Event Needs</h3>
+    <div class="description">
+      <p>Plan your perfect celebration with trusted partners. From stunning venues to expert photographers and creative decorators, PartyHub connects you to everything you need for a seamless event experience.</p>
+    </div>
+    <div class="card-grid">
+      <div class="card"><div class="image-container"><img src="images/venue.png" alt="Venue"><h4>Venue</h4></div></div>
+      <div class="card"><div class="image-container"><img src="images/cater.png" alt="Catering"><h4>Catering</h4></div></div>
+      <div class="card"><div class="image-container"><img src="images/photo.png" alt="Photo"><h4>Photo</h4></div></div>
+      <div class="card"><div class="image-container"><img src="images/decor.png" alt="Decorations"><h4>Decorations</h4></div></div>
+      <div class="card"><div class="image-container"><img src="images/logo.png" alt="Others"><h4>Others</h4></div></div>
+    </div>
+
+    <br>
+    <h3>Occasions</h3>  
+    <div class="description">
+      <p>Whether it’s a grand wedding, a joyful birthday, or a memorable graduation, PartyHub helps you create lasting memories with ease. Choose from services tailored to your special occasion.</p>
+    </div>
+    <div class="card-grid">
+      <div class="card"><div class="image-container"><img src="images/birthday.png" alt="Birthday"><h4>Birthday</h4></div></div>
+      <div class="card"><div class="image-container"><img src="images/wedding.png" alt="Wedding"><h4>Wedding</h4></div></div>
+      <div class="card"><div class="image-container"><img src="images/graduation.png" alt="Graduation"><h4>Graduation</h4></div></div>
+      <div class="card"><div class="image-container"><img src="images/baptism.png" alt="Baptism"><h4>Baptism</h4></div></div>
+      <div class="card"><div class="image-container"><img src="images/logo.png" alt="Others"><h4>Others</h4></div></div>
+    </div>
+  </section>
+
+    <!-- Promotional Video Section -->
+  <section id="promo" class="promo-section">
+    <h1>See How PartyHub Makes Every Event Effortless</h1>
+    <p>Watch how PartyHub connects you with reliable event suppliers, simplifies bookings, and brings every celebration to life — all in one easy-to-use app!</p>
+
+    <div class="video-container">
+      <video controls poster="images/thumbnail.jpg">
+        <source src="videos/PV.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <div class="cta-buttons">
+      <button class="download-btn google-play">
+        <img src="images/playstore.png" alt="Google Play Logo">
+        <div class="text">
+          <small>GET IT ON</small>
+          <strong>Google Play</strong>
+        </div>
+      </button>
+
+      <button class="download-btn app-store">
+        <img src="images/iphoneappstore.png" alt="App Store Logo">
+        <div class="text">
+          <small>Download on the</small>
+          <strong>App Store</strong>
+        </div>
+      </button>
+    </div>
+  </section>
+
+  <section id="about">
+    <h1>About Us</h1>
+    <div class="description">
+      <p>PartyHub is powered by a passionate team of innovators committed to transforming event planning. Our mission is to simplify how people organize and enjoy celebrations by providing easy access to reliable event services — all in one platform.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="image-container"><img src="images/nash.png" alt="Nash"></div>
+        <h4>Wenmar Nash G. Bagajo <br><p>Chief Technology Officer</p></h4>
+      </div>
+
+      <div class="card">
+        <div class="image-container"><img src="images/donna.JPG" alt="Donna"></div>
+        <h4>Donna M. Lampano <br><p>Chief Operations Officer</p></h4>
+      </div>
+
+      <div class="card">
+        <div class="image-container"><img src="images/aaron.JPG" alt="Aaron"></div>
+        <h4>Aaron Andrew G. Sumabal <br><p>Chief Executive Officer</p></h4>
+      </div>
+
+      <div class="card">
+        <div class="image-container"><img src="images/jules.png" alt="Jules"></div>
+        <h4>Brenan Jules R. Leones <br><p>Chief Financial Officer</p></h4>
+      </div>
+
+      <div class="card">
+        <div class="image-container"><img src="images/lee.png" alt="Lee"></div>
+        <h4>Lee Jeong Shin A. Tero <br><p>Chief Marketing Officer</p></h4>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="foot">
+    <h1>Contact</h1>
+    <p>Ready to plan your next event? Reach out to our friendly team for a free consultation.</p>
+    <p>📞 +63 912 345 6789<br>📧 hello@eventify.ph<br>📍 Panabo City, Davao, Philippines</p>
+  </section>
+
+</body>
+
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const menu = document.getElementById('menu');
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        menu.classList.toggle('active');
+    });
+</script>
+
+</html>

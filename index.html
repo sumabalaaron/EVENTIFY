@@ -379,79 +379,145 @@
         transition: 0.3s;
     }
 
-    /* Mobile Menu */
-    @media (max-width: 768px) {
-        nav {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 200px;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.9);
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 25px;
-            transition: right 0.3s ease;
-        }
-
-        nav.active {
-            right: 0;
-        }
-
-        .hamburger {
-            display: flex;
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
-        }
-    }
-
-    /* --- Tablets (481px–768px) --- */
-  @media (min-width: 481px) and (max-width: 768px) {
+     @media (max-width: 768px) {
+        
+    /* Stack header items vertically */
     .header ul {
-      padding: 0 40px;
+      flex-direction: column;
+      padding: 10px 20px;
     }
 
-    .hero {
-      flex-direction: column-reverse;
-      text-align: center;
-      padding: 120px 40px 60px;
-    }
-
-    .hero-content {
-      max-width: 90%;
-    }
-
-    .hero-content h1 {
-      font-size: 50px;
-    }
-
-    .hero-logo {
+    /* Make menu links smaller */
+    .menu {
+      flex-wrap: wrap;
       justify-content: center;
     }
 
+    .menu a {
+      padding: 10px;
+      font-size: 14px;
+    }
+
+    /* Hero section adjustments */
+    .hero {
+      flex-direction: column;
+      padding: 120px 20px;
+      height: auto;
+    }
+
+    .hero-content h1 {
+      font-size: 36px;
+    }
+
+    .hero-content h3 {
+      font-size: 20px;
+    }
+
+    .hero-content p {
+      text-align: justify;
+      font-size: 14px;
+    }
+
     .hero-logo img {
-      max-width: 300px;
+      max-width: 250px;
     }
 
+    /* Cards appear one per row */
     .card-grid {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr;
     }
 
-    .video-container {
-      width: 90%;
+    .card img {
+      height: 220px;
+    }
+
+    /* Footer readability */
+    .foot {
+      font-size: 14px;
+      padding: 30px 15px;
     }
   }
+
+  @media (max-width: 480px) {
+
+    /* Adjust hero text size for very small screens */
+    .hero-content h1 {
+      font-size: 28px;
+    }
+
+    .hero-content h3 {
+      font-size: 16px;
+    }
+
+    .hero-content button {
+      padding: 10px 20px;
+      font-size: 14px;
+    }
+
+    /* Menu spacing and font size */
+    .menu a {
+      font-size: 12px;
+      padding: 8px;
+    }
+
+    /* Section text sizes */
+    section h1 {
+      font-size: 22px;
+    }
+
+    section p {
+      font-size: 13px;
+    }
+
+    /* Logo size smaller */
+    .hero-logo img {
+      max-width: 200px;
+    }
+  }
+
+@media (max-width: 1024px) {
+
+      /* Adjust header padding for smaller screens */
+      .header ul {
+        padding: 0 40px;
+      }
+
+      /* Hero section stacks vertically */
+      .hero {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        height: auto;
+        padding: 100px 40px;
+      }
+
+      .hero-content {
+        max-width: 100%;
+      }
+
+      .hero-content h1 {
+        font-size: 48px;
+      }
+
+      .hero-logo {
+        justify-content: center;
+        margin-top: 30px;
+      }
+
+      .hero-logo img {
+        max-width: 320px;
+      }
+
+      /* Reduce padding for sections */
+      section {
+        padding: 80px 40px;
+      }
+
+      /* 2 cards per row instead of 5 */
+      .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
 
 /* --- Laptops (769px–1200px) --- */
 @media (min-width: 769px) and (max-width: 1200px) {
@@ -473,16 +539,6 @@
 
   .card-grid {
     grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* --- Large Screens (1201px–1600px) --- */
-@media (min-width: 1201px) and (max-width: 1600px) {
-  .hero-content h1 {
-    font-size: 65px;
-  }
-  .hero-content h3 {
-    font-size: 26px;
   }
 }
 
@@ -638,5 +694,3 @@
 </script>
 
 </html>
-
-
